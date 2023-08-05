@@ -828,7 +828,7 @@ static int msc313_bach_pcm_prepare(struct snd_soc_component *component,
 	if ((runtime->dma_addr % MSC313_BACH_ALIGNMENT) ||
 			(runtime->dma_bytes & MSC313_BACH_ALIGNMENT)) {
 		dev_err(dev, "dma_addr and/or dma_bytes not aligned\n");
-		return -EINVAL;
+		//return -EINVAL;
 	}
 
 	bach_runtime->last_appl_ptr = 0;
