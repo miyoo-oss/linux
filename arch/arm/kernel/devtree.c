@@ -24,6 +24,8 @@
 #include <asm/mach/arch.h>
 #include <asm/mach-types.h>
 
+extern void *builtin_dtb_start;
+
 
 #ifdef CONFIG_SMP
 extern struct of_cpu_method __cpu_method_of_table[];
@@ -202,7 +204,28 @@ const struct machine_desc * __init setup_machine_fdt(void *dt_virt)
 	mdesc_best = &__mach_desc_GENERIC_DT;
 
 	if (!dt_virt || !early_init_dt_verify(dt_virt))
-		return NULL;
+	{
+		if(early_init_dt_verify(builtin_dtb_start))
+		{
+
+
+			early_print("early_init_dt_verify() pass...\n");
+			/*
+			
+			*/
+			extern int early_atags_to_fdt(void *atag_list, void *fdt, int total_space);
+			extern u32 builtin_dtb_size;
+
+			if((!dt_virt ) || (!early_atags_to_fdt(dt_virt,builtin_dtb_start,builtin_dtb_size)))
+			{
+				early_print("early_atags_to_fdt() success\n");
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+	}
 
 	mdesc = of_flat_dt_match_machine(mdesc_best, arch_get_next_mach);
 
