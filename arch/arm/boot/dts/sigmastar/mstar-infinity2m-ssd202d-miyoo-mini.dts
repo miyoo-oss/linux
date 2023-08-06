@@ -202,6 +202,21 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c1_mode1_pins>;
 	status = "okay";
+
+    axp22x: pmic@34 {
+        compatible = "x-powers,axp223";
+        reg = <0x34>;
+        interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+        interrupt-controller;
+        #interrupt-cells = <1>;
+		x-powers,drive-vbus-en;
+    };
+};
+
+#include "axp223.dtsi"
+
+&usb_power_supply {
+	status = "okay";
 };
 
 &miu {
@@ -230,11 +245,6 @@
 	status = "okay";
 };
 
-
-&usbphy0 {
-	status = "okay";
-};
-
 &usbphy0 {
 	status = "okay";
 };
@@ -243,7 +253,22 @@
 	status = "okay";
 };
 
+&reg_dldo1 {
+	regulator-always-on;
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+	regulator-name = "vcc-wifi-1";
+};
+
+&reg_dldo2 {
+	regulator-always-on;
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+	regulator-name = "vcc-wifi-2";
+};
+
 &usbphy2 {
+	usb0_vbus-supply = <&reg_dldo1>;
 	status = "okay";
 };
 
