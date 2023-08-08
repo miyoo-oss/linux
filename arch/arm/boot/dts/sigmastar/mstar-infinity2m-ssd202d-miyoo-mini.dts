@@ -285,7 +285,7 @@
 		pinctrl-0 = <&tx_mipi_mode1_pins>;
 		//backlight = <&backlight>;
 		dsi-lanes = <4>;
-		//rotation = <180>;
+		rotation = <180>;
 		port {
 			panel_in: endpoint {
 				remote-endpoint = <&dsi_out>;
