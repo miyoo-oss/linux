@@ -2454,7 +2454,7 @@ dont_test_tx_en:
 		else if (serial8250_request_dma(up))
 			msg = "failed to request DMA";
 		if (msg) {
-			dev_warn_ratelimited(port->dev, "%s\n", msg);
+			//dev_warn_ratelimited(port->dev, "%s\n", msg);
 			up->dma = NULL;
 		}
 	}
