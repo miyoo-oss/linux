@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include "mstar-infinity2m-ssd202d.dtsi"
+#include <dt-bindings/input/input.h>
 
 / {
 	model = "Miyoo Mini";
@@ -34,97 +35,97 @@
 		key_up {
 			label = "key_up";
 			gpios = <&gpio SSD20XD_GPIO_GPIO1 GPIO_ACTIVE_LOW>;
-			linux,code = <103>; /* KEY_UP */
+			linux,code = <KEY_UP>; /* KEY_UP */
 		};
 
 		key_down {
 			label = "key_down";
 			gpios = <&gpio_pm SSD20XD_PM_LED0 GPIO_ACTIVE_LOW>;
-			linux,code = <108>; /* KEY_DOWN */
+			linux,code = <KEY_DOWN>; /* KEY_DOWN */
 		};
 
 		key_left {
 			label = "key_left";
 			gpios = <&gpio_pm SSD20XD_PM_LED1 GPIO_ACTIVE_LOW>;
-			linux,code = <105>; /* KEY_LEFT */
+			linux,code = <KEY_LEFT>; /* KEY_LEFT */
 		};
 
 		key_right {
 			label = "key_right";
 			gpios = <&gpio SSD20XD_GPIO_GPIO5 GPIO_ACTIVE_LOW>;
-			linux,code = <106>; /* KEY_RIGHT */
+			linux,code = <KEY_RIGHT>; /* KEY_RIGHT */
 		};
 
 		key_a {
 			label = "key_a";
 			gpios = <&gpio SSD20XD_GPIO_GPIO7 GPIO_ACTIVE_LOW>;
-			linux,code = <30>; /* KEY_A */
+			linux,code = <KEY_A>; /* KEY_A */
 		};
 
 		key_b {
 			label = "key_b";
 			gpios = <&gpio SSD20XD_GPIO_GPIO6 GPIO_ACTIVE_LOW>;
-			linux,code = <48>; /* KEY_B */
+			linux,code = <KEY_B>; /* KEY_B */
 		};
 
 		key_y {
 			label = "key_y";
 			gpios = <&gpio SSD20XD_GPIO_GPIO8 GPIO_ACTIVE_LOW>;
-			linux,code = <21>; /* KEY_Y */
+			linux,code = <KEY_Y>; /* KEY_Y */
 		};
 
 		key_x {
 			label = "key_x";
 			gpios = <&gpio SSD20XD_GPIO_GPIO9 GPIO_ACTIVE_LOW>;
-			linux,code = <45>; /* KEY_X */
+			linux,code = <KEY_X>; /* KEY_X */
 		};
 
 		key_start {
 			label = "key_start";
 			gpios = <&gpio SSD20XD_GPIO_GPIO10 GPIO_ACTIVE_LOW>;
-			linux,code = <28>; /* KEY_ENTER */
+			linux,code = <KEY_ENTER>; /* KEY_ENTER */
 		};
 
 		key_select {
 			label = "key_select";
 			gpios = <&gpio SSD20XD_GPIO_GPIO11 GPIO_ACTIVE_LOW>;
-			linux,code = <1>; /* KEY_ESC */
+			linux,code = <KEY_ESC>; /* KEY_ESC */
 		};
 
 		key_menu {
 			label = "key_menu";
 			gpios = <&gpio SSD20XD_GPIO_GPIO12 GPIO_ACTIVE_LOW>;
-			linux,code = <139>; /* KEY_MENU */
+			linux,code = <KEY_MENU>; /* KEY_MENU */
 		};
 
 		key_l {
 			label = "key_l";
 			gpios = <&gpio SSD20XD_GPIO_GPIO14 GPIO_ACTIVE_LOW>;
-			linux,code = <16>; /* KEY_Q */
+			linux,code = <KEY_L>; /* KEY_Q */
 		};
 
 		key_l2 {
 			label = "key_l2";
 			gpios = <&gpio SSD20XD_GPIO_GPIO13 GPIO_ACTIVE_LOW>;
-			linux,code = <17>; /* KEY_W */
+			linux,code = <KEY_W>; /* KEY_W */
 		};
 
 		key_r {
 			label = "key_r";
 			gpios = <&gpio SSD20XD_GPIO_UART0_RX GPIO_ACTIVE_LOW>;
-			linux,code = <18>; /* KEY_E */
+			linux,code = <KEY_R>; /* KEY_E */
 		};
 
 		key_r2 {
 			label = "key_r2";
 			gpios = <&gpio SSD20XD_GPIO_GPIO90 GPIO_ACTIVE_LOW>;
-			linux,code = <19>; /* KEY_R */
+			linux,code = <KEY_E>; /* KEY_R */
 		};
 
 		key_power {
 			label = "key_power";
 			gpios = <&gpio SSD20XD_GPIO_GPIO86 GPIO_ACTIVE_HIGH>;
-			linux,code = <116>; /* KEY_POWER */
+			linux,code = <KEY_POWER>; /* KEY_POWER */
 		};
 	};
 
@@ -219,6 +220,14 @@
 	status = "okay";
 };
 
+&ac_power_supply {
+	status = "okay";
+};
+
+&battery_power_supply {
+	status = "okay";
+};
+
 &miu {
 	ddr-supply = <&reg_vcc_dram>;
 };
@@ -234,6 +243,7 @@
 	//		  <&sc_gp_ctrl_muxes SSD20XD_SC_GP_HDMI_GATE_MUX>;
 	//assigned-clock-parents = <&clkgen MSC313_CLKGEN_DIVIDERS MSC313_CLKGEN_GATE_9 GATE9_DIVIDEBY_4>;
 	//			 <&clkgen MSC313_CLKGEN_DEGLITCHES SSD20XD_CLKGEN_SC_PIXEL 0>;
+	mstar,op2-output = <1>;
 	status = "okay";
 };
 
