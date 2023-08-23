@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import re, fnmatch, os, sys, mmap, struct
 
@@ -6,20 +6,20 @@ if __name__ == '__main__':
     
     name='#MS_DTB#'
  
-    dtb_file=open(sys.argv[2])
+    dtb_file=open(sys.argv[2], 'rb')
     dtb_file.seek(0,os.SEEK_END)
-    size=dtb_file.tell()
     dtb_file.seek(0,os.SEEK_SET)
     dtb=dtb_file.read()
     dtb_file.close()
-    
+    size = os.path.getsize(sys.argv[2])
+
     if sys.getsizeof(dtb) > (64*1024):
         print ('DTB size 0x%08X too big to fit in 64K limit!!' % dtb.size())
         sys.exit() 
         
     fmap=mmap.mmap(os.open(sys.argv[1],os.O_RDWR),0)
 
-    offset=fmap.find(name)    
+    offset=fmap.find(name.encode("utf-8"))    
     if offset >=0:
         print ('offset:0x%08X' % offset)
         print ('  size:0x%08X' % size )
