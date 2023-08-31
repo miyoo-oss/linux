@@ -1,4 +1,4 @@
-obj-$(CONFIG_ARCH_MSTARV7) += mstarv7.o atags_to_fdt.o
+obj-$(CONFIG_ARCH_MSTARV7) += mstarv7.o
 
 ifeq ($(CONFIG_SUSPEND),y)
 obj-$(CONFIG_MACH_INFINITY) += pm.o

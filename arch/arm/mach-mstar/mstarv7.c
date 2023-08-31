@@ -41,34 +41,6 @@
 
 static void __iomem *l3bridge;
 
-struct MS_BIN_OPTION
-{
-    u8 name[8];
-    u8 args[8];
-};
-
-const struct MS_BIN_OPTION ms_image_size __attribute__ ((aligned (16))) =
-{
-	{'#','I','M','G','_','S','Z','#'},
-	{0,0,0,0,0,0,0,0}
-};
-
-
-#define BUILTIN_DTB_SZ (64*1024)
-struct MS_BUILTIN_DTB
-{
-	struct MS_BIN_OPTION ms_dtb;
-	u8 content[BUILTIN_DTB_SZ];
-};
-
-
-struct MS_BUILTIN_DTB builtin_dtb __attribute__ ((aligned (16)))=
-{
-		.ms_dtb={ {'#','M','S','_','D','T','B','#'}, {0,0,0,0,0,0,0,0}},
-};
-void *builtin_dtb_start=(void *)builtin_dtb.content;
-const u32  builtin_dtb_size=BUILTIN_DTB_SZ;
-
 static const char * const mstarv7_board_dt_compat[] __initconst = {
 	"mstar,infinity",
 	"mstar,infinity2",
